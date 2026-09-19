@@ -1,5 +1,5 @@
 context:
-  version: "0.11.0"
+  version: "0.11.3"
 
 package:
   name: rsop
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://codeberg.org/heiko/rsop/archive/rsop/v${{ version }}.tar.gz
-  sha256: c02b195dbd00732501cec9096b76b4e360b5d8ea873a713e363c40d1922ef19a
+  sha256: 31a8fbc8a35a2ce75dbefc701920cf166c347eadcb31516457ec39ea54436f70
 
 build:
-  number: 2
+  number: 0
   script:
     env:
       CARGO_PROFILE_RELEASE_LTO: fat
