@@ -19,6 +19,11 @@ build:
       - cd rsop
       - if: unix
         then:
+          # fix osx-arm64 compilation by prefetching and patching the `sha1-asm` crate (removing invalid relocation specifiers)
+          - if: target_platform == "osx-arm64"
+            then:
+              - cargo fetch --locked
+              - find "${CARGO_HOME:-$HOME/.cargo}" -name "aarch64_apple.S" -exec sed -i.bak 's/#:lo12://g' {} +
           - cargo auditable install --path=. --root="$PREFIX" --no-track --locked --bins --features=cliv
           # copy shell completion files and man page
           - mkdir -p "$PREFIX"/share/bash-completion/completions "$PREFIX"/share/fish/vendor_completions.d "$PREFIX"/share/zsh/site-functions "$PREFIX"/share/man/man1
